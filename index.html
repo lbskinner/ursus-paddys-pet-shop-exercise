@@ -4,10 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel="stylesheet" href="styles/style.css">
-
   <script src="vendors/jquery/jquery-3.4.1.min.js"></script>
+
+  <!-- ADDING BOOTSTRAP for styling -->
+  <script src="vendors/bootstrap-4.4.1-dist/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="vendors/bootstrap-4.4.1-dist/css/bootstrap.min.css">
+
   <script src="scripts/client.js"></script>
+  <link rel="stylesheet" href="styles/style.css">
 
   <title>Document</title>
 </head>
@@ -18,7 +22,221 @@
     </header>
 
     <main class="site-bd">
+      <div class="container">
+        <div class="row">
+            <div class="col-7">
+              <h2 class="mb-4">Pet Shop Inventory</h2>
 
+              <!-- START: New Creature Form -->
+
+              <h3 class="mb-3">Add a New Pet</h3>
+              <form class="mb-5">
+                <div class="form-row">
+
+                  <div class="form-group col-6">
+                    <label for="name">Name:</label>
+                    <input
+                      type="text"
+                      placeholder="Enter Creature's Name"
+                      name="name"
+                      required
+                      class="form-control"
+                    />
+                  </div>
+
+                  <div class="form-group col-6">
+                    <label for="type">Type:</label>
+                    <select
+                      name="type"
+                      required
+                      class="form-control"
+                    >
+                      <option value="">Select a Creature Type</option>
+                      <option value="domestic">Domestic</option>
+                      <option value="wild">Wild</option>
+                      <option value="mounted">Mounted</option>
+                      <option value="combat">Combat</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group col-12">
+                    <label>Price:</label>
+                    <input
+                      type="number"
+                      placeholder="How much is the creature?"
+                      name="name"
+                      required
+                      class="form-control"
+                    />
+                  </div>
+
+                  <div class="form-group col-12">
+                    <label>Any Additional Notes:</label>
+                    <textarea
+                      type="text"
+                      name="name"
+                      class="form-control"
+                    >
+                    </textarea>
+                  </div>
+
+                  <button class="btn btn-primary btn-block">
+                    Add Creature
+                  </button>
+
+                </div>
+              </form>
+
+              <!-- END: New Creature Form -->
+
+
+              <!-- START: Available Creatures -->
+
+              <h3 class="mb-3">Available Pets</h3>
+
+              <div class="row mx-n2">
+
+                <!-- START: Repeatable Creature Item -->
+                <div class="col-4 mb-3 px-2">
+
+                  <div class="card">
+                    <h5 class="card-header">$0.00</h5>
+                    <div class="card-body">
+                      <h5 class="card-title">Name of Creature</h5>
+                      <h6 class="card-subtitle mb-2 text-muted">Creature Type</h6>
+                      <p class="card-text">Additional creature notes.</p>
+                      <button class="btn btn-primary btn-block">Purchase</button>
+                    </div>
+                  </div>
+
+                </div>
+                <!-- END: Repeatable Creature Item -->
+
+                <div class="col-4 mb-3 px-2">
+
+                  <div class="card">
+                    <h5 class="card-header">$0.00</h5>
+                    <div class="card-body">
+                      <h5 class="card-title">Name of Creature</h5>
+                      <h6 class="card-subtitle mb-2 text-muted">Creature Type</h6>
+                      <p class="card-text">Additional creature notes.</p>
+                      <button class="btn btn-primary btn-block">Purchase</button>
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="col-4 mb-3 px-2">
+
+                  <div class="card">
+                    <h5 class="card-header">$0.00</h5>
+                    <div class="card-body">
+                      <h5 class="card-title">Name of Creature</h5>
+                      <h6 class="card-subtitle mb-2 text-muted">Creature Type</h6>
+                      <p class="card-text">Additional creature notes.</p>
+                      <button class="btn btn-primary btn-block">Purchase</button>
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="col-4 mb-3 px-2">
+
+                  <div class="card">
+                    <h5 class="card-header">$0.00</h5>
+                    <div class="card-body">
+                      <h5 class="card-title">Name of Creature</h5>
+                      <h6 class="card-subtitle mb-2 text-muted">Creature Type</h6>
+                      <p class="card-text">Additional creature notes.</p>
+                      <button class="btn btn-primary btn-block">Purchase</button>
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="col-4 mb-3 px-2">
+
+                  <div class="card">
+                    <h5 class="card-header">$0.00</h5>
+                    <div class="card-body">
+                      <h5 class="card-title">Name of Creature</h5>
+                      <h6 class="card-subtitle mb-2 text-muted">Creature Type</h6>
+                      <p class="card-text">Additional creature notes.</p>
+                      <button class="btn btn-primary btn-block">Purchase</button>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+              <!-- END: Available Creatures -->
+
+            </div>
+            <div class="col-5">
+              <div class="card">
+                <div class="card-body">
+
+                  <h2 class="mb-4">Checkout</h2>
+
+                  <h3 class="mb-3">Selected Creatures</h3>
+                  <div class="card mb-4">
+                    <ul class="list-group list-group-flush">
+                      <li class="list-group-item">Creature Name - $0.00</li>
+                      <li class="list-group-item">Creature Name - $0.00</li>
+                      <li class="list-group-item">Creature Name - $0.00</li>
+                      <li class="list-group-item list-group-item-success">Total Price: $0.00</li>
+                    </ul>
+                  </div>
+
+                  <h3 class="mb-3">Customer Info</h3>
+                  <form>
+                    <div class="form-row">
+
+                      <div class="form-group col-6">
+                        <label for="name">First Name:</label>
+                        <input
+                          type="text"
+                          placeholder="Enter Creature's Name"
+                          name="name"
+                          required
+                          class="form-control"
+                        />
+                      </div>
+
+                      <div class="form-group col-6">
+                        <label for="name">Last Name:</label>
+                        <input
+                          type="text"
+                          placeholder="Enter Creature's Name"
+                          name="name"
+                          required
+                          class="form-control"
+                        />
+                      </div>
+
+                      <div class="form-group col-12">
+                        <label for="name">Phone:</label>
+                        <input
+                          type="text"
+                          placeholder="861-867-5309"
+                          name="name"
+                          required
+                          class="form-control"
+                        />
+                      </div>
+
+                      <button class="btn btn-primary btn-block">
+                        Checkout
+                      </button>
+                    </div>
+                  </form>
+
+                </div>
+              </div>
+
+            </div>
+        </div>
+      </div>
     </main>
 
     <footer class="site-ft footer">
