@@ -57,7 +57,16 @@ All form fields are wrapped with a `<form>` tag so they will cause the page to r
 
 **Goal:** After all of the creatures wanted have been added to the **Checkout** and the customer's information has been entered into the **Customer Info** form after the **Checkout** button is clicked all of the **Checkout** information is cleared out and the purchased creatures are removed from inventory
 
+1. If the **First Name**, **Last Name**, and **Phone Number** fields have not been filled out don't let the form be submitted and surface a message to the user
+    - this can be accomplished with a check in your javascript or by leveraging the built in browser behavior by adding a required attribute to the appropriate fields
+1. When clicking on the **Checkout** button
+    - add all creatures in the **Selected Creatures** section to to a new array along with the customer info (data structure is up to you the customer information just has to be associated with the specific creatures they purchased)
+    - remove all of the `<li>` form the **Selected Creatures** section but leave the updated total of **$0.00**
+    - any creature that was in the **Selected Creatures** section should be removed from the `inventory` array
+    - clear the **Customer Info** form fields
+    - render the new `inventory` to the DOM in the **Available Creatures** section
+
 
 ### Phase 5: Show All Transactions
 
-
+This phase is all you. Track all purchases in an array and render the contents of the array to the DOM in the area marked with the `<!-- Display all Transactions -->` code comment. There is no pre-defined markup for this section so you may do as you please. Be sure to take a look at the [bootstrap documentation](https://getbootstrap.com/docs/4.4/getting-started/introduction/) to see what kind of things are available to you.
