@@ -30,6 +30,15 @@ All form fields are wrapped with a `<form>` tag so they will cause the page to r
 
 **Goal:** After having filled out the information for the **Add a New Pet** form the new pet will be added to the page as a **Pet Card**
 
+1. The **Name**, **Type**, and **Price** fields are required data if any of them are left blank don't allow the form to be submitted and instead surface a message to the user
+    - this can be accomplished with a check in your javascript or by leveraging the built in browser behavior by adding a required attribute to the appropriate fields
+1. When clicking on the **Add Creature** button collect all of the data from the form fields and create a new creature object with four properties
+    - `name` - string value
+    - `type` - string value of either "domestic", "wild", "mounted", "combat"
+    - `price` - number value does not have to be a float but my end up being a float not an integer
+    - `notes` - string value
+1. After the creation of the new creature object push the object into the `inventory`
+1. With an updated inventory render the inventory to the **Available Creature** section of the page (you should be able to leverage the same function you created in **Phase 1**)
 
 
 ### Phase 3: Purchase a Pet
