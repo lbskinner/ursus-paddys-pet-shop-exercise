@@ -45,6 +45,13 @@ All form fields are wrapped with a `<form>` tag so they will cause the page to r
 
 **Goal:** When you click the **Purchase** button on an individual **Pet Card** that specific pet is added to the **Selected Creatures** section of the **Checkout**
 
+1. When clicking on the **Purchase** button of a **Pet Card** take the data for that particular pet and push it into a new global array for the checkout
+1. Create a function to render the creatures stored in the checkout array to the **Selected Creatures** section of the **Checkout**
+    - When rendering the **Selected Creatures** look for the HTML wrapped by the `<!-- START: Repeatable Checkout Creature Item -->` and `<!-- END: Repeatable Checkout Creature Item -->` code comments this is the repeatable markup you should use for creating the creature items
+    - Each creature item only needs the `name` and `price` rendered in the `<li>`
+    - As you are rendering each item make sure to add up the total cost by adding the `price` of each creature
+    - The price should be the last `<li>` in the **Selected Creatures** section to be rendered to the DOM
+
 
 ### Phase 4: Checkout with Purchased Pets
 
