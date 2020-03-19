@@ -40,6 +40,13 @@ const inventory = [
 
 function init() {
   console.log("READY");
+  // display inventory on page when page loads
+  render();
+  // add event listener for add a new pet
+  $(".js-add-new-pet-form").on("submit", addNewPet);
+}
+
+function render() {
   // render the page inventory to page on initial page load
   $(".js-pet-card-container").empty();
   for (let pet of inventory) {
@@ -64,4 +71,19 @@ function init() {
   }
 }
 
-function render() {}
+function addNewPet(event) {
+  // prevent the default reload the page
+  event.preventDefault();
+  const newPet = {
+    name: $(".js-name-input").val(),
+    type: $(".js-input-type").val(),
+    price: Number($(".js-input-price").val()),
+    notes: $(".js-input-notes").val()
+  };
+  // add new pet to inventory
+  inventory.push(newPet);
+  // display inventory on page
+  render();
+  // log inventory in the console to see if it matches the DOM
+  console.log(inventory);
+}

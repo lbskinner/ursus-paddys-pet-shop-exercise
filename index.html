@@ -33,7 +33,7 @@
               <!-- START: New Creature Form -->
 
               <h3 class="mb-3">Add a New Pet</h3>
-              <form class="mb-5">
+              <form class="mb-5 js-add-new-pet-form">
                 <div class="form-row">
                   <div class="form-group col-6">
                     <label for="name">Name:</label>
@@ -41,13 +41,13 @@
                       type="text"
                       placeholder="Enter Creature's Name"
                       name="name"
-                      class="form-control"
+                      class="form-control js-name-input"
                     />
                   </div>
 
                   <div class="form-group col-6">
                     <label for="type">Type:</label>
-                    <select name="type" class="form-control">
+                    <select name="type" class="form-control js-input-type">
                       <option value="">Select a Creature Type</option>
                       <option value="domestic">Domestic</option>
                       <option value="wild">Wild</option>
@@ -62,17 +62,21 @@
                       type="number"
                       placeholder="How much is the creature?"
                       name="name"
-                      class="form-control"
+                      class="form-control js-input-price"
                     />
                   </div>
 
                   <div class="form-group col-12">
                     <label>Any Additional Notes:</label>
-                    <textarea type="text" name="name" class="form-control">
+                    <textarea
+                      type="text"
+                      name="name"
+                      class="form-control js-input-notes"
+                    >
                     </textarea>
                   </div>
 
-                  <button class="btn btn-primary btn-block">
+                  <button class="btn btn-primary btn-block" type="submit">
                     Add Creature
                   </button>
                 </div>
