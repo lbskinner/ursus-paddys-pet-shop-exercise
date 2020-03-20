@@ -103,24 +103,35 @@ function selectCreature() {
   let selectPet = inventory.splice(petIndex, 1);
   // add the deleted pet to new global array for checkout
   creaturesToCheckout.push(...selectPet);
+  // log inventory to make sure the selected pet has been removed
+  console.log(inventory);
+  // log creaturesToCheckout to make sure the selected pet has been added
+  console.log(creaturesToCheckout);
   // empty the checkout ul
   $(".js-select-list").empty();
-  // render the selected pets on page
+  // create variable total price
   let totalPrice = 0;
-  for (let pet in creaturesToCheckout) {
+  // render the selected pets on page
+  for (let pet of creaturesToCheckout) {
+    // total price equals to the sum of all individual pets selected
     totalPrice += pet.price;
     // format the price
-    // let petPrice = pet.price.toLocaleString(undefined, {
-    //   minimumFractionDigits: 2
-    // });
+    let petPrice = pet.price.toLocaleString(undefined, {
+      minimumFractionDigits: 2
+    });
     // display selected pets on page
     $(".js-select-list").append(`
-    <li class="list-group-item">${pet.name} - $${pet.price}</li>
+    <li class="list-group-item">${pet.name} - $${petPrice}</li>
     `);
   }
-  // add total price at the end
+  // format total price
+  totalPrice = totalPrice.toLocaleString(undefined, {
+    minimumFractionDigits: 2
+  });
+  // display total price at the end
   $(".js-select-list").append(`
   <li class="list-group-item list-group-item-success">Total Price - $${totalPrice}</li>
     `);
+  // render the inventory to reflect changes
   render();
 }
