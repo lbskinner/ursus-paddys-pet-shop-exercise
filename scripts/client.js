@@ -40,6 +40,8 @@ const inventory = [
 
 const creaturesToCheckout = [];
 
+const customerPurchases = [];
+
 function init() {
   console.log("READY");
   // display inventory on page when page loads
@@ -48,6 +50,8 @@ function init() {
   $(".js-add-new-pet-form").on("submit", addNewPet);
   // add event listener for purchase button
   $(".js-pet-card-container").on("click", ".js-btn-purchase", selectCreature);
+  // add event listen for checkout button
+  $(".js-btn-checkout").on("click", checkoutPurchase);
 }
 
 function render() {
@@ -134,4 +138,10 @@ function selectCreature() {
     `);
   // render the inventory to reflect changes
   render();
+}
+
+function checkoutPurchase(event) {
+  // prevent the default reload the page
+  event.preventDefault();
+  console.log("CHECKOUT");
 }
