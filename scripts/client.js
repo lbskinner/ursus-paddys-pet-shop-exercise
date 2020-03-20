@@ -38,8 +38,10 @@ const inventory = [
   }
 ];
 
+// create global variable to store pets selected before checkout
 const creaturesToCheckout = [];
 
+//create global variable to store customer purchase information
 const customerPurchases = [];
 
 function init() {
@@ -92,10 +94,15 @@ function addNewPet(event) {
   };
   // add new pet to inventory
   inventory.push(newPet);
+  // clear all input fields
+  $(".js-name-input").val("");
+  $(".js-input-type").val("");
+  $(".js-input-price").val("");
+  $(".js-input-notes").val("");
   // display inventory on page
   render();
   // log inventory in the console to see if it matches the DOM
-  console.log(inventory);
+  console.log("INVENTORY AFTER ADD NEW PET: ", inventory);
 }
 
 function selectCreature() {
@@ -103,14 +110,12 @@ function selectCreature() {
   // log the index
   console.log($(this).data("index"));
   let petIndex = $(this).data("index");
-  // delete the selected pet from inventory
-  let selectPet = inventory.splice(petIndex, 1);
-  // add the deleted pet to new global array for checkout
-  creaturesToCheckout.push(...selectPet);
+  // delete the selected pet from inventory AND add the deleted pet to new global array for checkout
+  creaturesToCheckout.push(...inventory.splice(petIndex, 1));
   // log inventory to make sure the selected pet has been removed
-  console.log(inventory);
+  console.log("INVENTORY AFTER SELECT PET:", inventory);
   // log creaturesToCheckout to make sure the selected pet has been added
-  console.log(creaturesToCheckout);
+  console.log("SELECTED PETS:", creaturesToCheckout);
   // empty the checkout ul
   $(".js-select-list").empty();
   // create variable total price
@@ -134,7 +139,7 @@ function selectCreature() {
   });
   // display total price at the end
   $(".js-select-list").append(`
-  <li class="list-group-item list-group-item-success">Total Price - $${totalPrice}</li>
+  <li class="list-group-item list-group-item-success">Total Price: $${totalPrice}</li>
     `);
   // render the inventory to reflect changes
   render();
@@ -144,4 +149,25 @@ function checkoutPurchase(event) {
   // prevent the default reload the page
   event.preventDefault();
   console.log("CHECKOUT");
+  // create object to store customer purchase information
+  const individualCustomerPurchase = {
+    firstName: $(".js-input-customer-fname").val(),
+    lastName: $(".js-input-customer-lname").val(),
+    phone: $(".js-input-customer-phone-number").val(),
+    petsPurchased: creaturesToCheckout.splice(0, creaturesToCheckout.length)
+  };
+  customerPurchases.push(individualCustomerPurchase);
+  // log customer purchases
+  console.log("CUSTOMER PURCHASES: ", customerPurchases);
+  // log selected pets to make sure it's an empty array
+  console.log("PETS SELECTED AFTER CHECKOUT ", creaturesToCheckout);
+  // removed all pets under select creatures and leave the update total of $0
+  $(".js-select-list").empty();
+  $(".js-select-list").append(`
+  <li class="list-group-item list-group-item-success">Total Price: $0.00</li>
+    `);
+  // clear all customer input fields
+  $(".js-input-customer-fname").val("");
+  $(".js-input-customer-lname").val("");
+  $(".js-input-customer-phone-number").val("");
 }
