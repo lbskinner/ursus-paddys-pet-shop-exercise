@@ -48,12 +48,14 @@ function init() {
   console.log("READY");
   // display inventory on page when page loads
   render();
-  // add event listener for add a new pet
+  // create event listener for add a new pet
   $(".js-add-new-pet-form").on("submit", addNewPet);
-  // add event listener for purchase button
+  // create event listener for purchase button
   $(".js-pet-card-container").on("click", ".js-btn-purchase", selectCreature);
-  // add event listen for checkout button
+  // create event listen for checkout button
   $(".js-btn-checkout").on("click", checkoutPurchase);
+  // create event listener for display all transactions
+  $(".js-btn-display").on("click", displayAllTransactions);
 }
 
 function render() {
@@ -150,24 +152,44 @@ function checkoutPurchase(event) {
   event.preventDefault();
   console.log("CHECKOUT");
   // create object to store customer purchase information
-  const individualCustomerPurchase = {
-    firstName: $(".js-input-customer-fname").val(),
-    lastName: $(".js-input-customer-lname").val(),
-    phone: $(".js-input-customer-phone-number").val(),
-    petsPurchased: creaturesToCheckout.splice(0, creaturesToCheckout.length)
-  };
-  customerPurchases.push(individualCustomerPurchase);
-  // log customer purchases
-  console.log("CUSTOMER PURCHASES: ", customerPurchases);
-  // log selected pets to make sure it's an empty array
-  console.log("PETS SELECTED AFTER CHECKOUT ", creaturesToCheckout);
-  // removed all pets under select creatures and leave the update total of $0
-  $(".js-select-list").empty();
-  $(".js-select-list").append(`
+  if (
+    !$(".js-input-customer-fname").val() ||
+    !$(".js-input-customer-lname").val() ||
+    !$(".js-input-customer-phone-number").val()
+  ) {
+    alert("Please make sure to fill out all the fields!");
+    return;
+  } else {
+    const individualCustomerPurchase = {
+      firstName: $(".js-input-customer-fname").val(),
+      lastName: $(".js-input-customer-lname").val(),
+      phone: $(".js-input-customer-phone-number").val(),
+      petsPurchased: creaturesToCheckout.splice(0, creaturesToCheckout.length)
+    };
+    customerPurchases.push(individualCustomerPurchase);
+    // log customer purchases
+    console.log("CUSTOMER PURCHASES: ", customerPurchases);
+    // log selected pets to make sure it's an empty array
+    console.log("PETS SELECTED AFTER CHECKOUT ", creaturesToCheckout);
+    // removed all pets under select creatures and leave the update total of $0
+    $(".js-select-list").empty();
+    $(".js-select-list").append(`
   <li class="list-group-item list-group-item-success">Total Price: $0.00</li>
     `);
-  // clear all customer input fields
-  $(".js-input-customer-fname").val("");
-  $(".js-input-customer-lname").val("");
-  $(".js-input-customer-phone-number").val("");
+    // clear all customer input fields
+    $(".js-input-customer-fname").val("");
+    $(".js-input-customer-lname").val("");
+    $(".js-input-customer-phone-number").val("");
+  }
+}
+
+function displayAllTransactions() {
+  console.log("DISPLAY ALL TRANSACTIONS");
+  // add transactions to list
+  $(".js-transactions-list").empty();
+  for (let transaction of customerPurchases) {
+    $(".js-transactions-list").append(`
+    <li class="list-group-item">${transaction.firstName} ${transaction.lastName} ${transaction.petsPurchased}
+    </li>`);
+  }
 }

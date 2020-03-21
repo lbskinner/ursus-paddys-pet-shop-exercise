@@ -41,6 +41,7 @@
                       type="text"
                       placeholder="Enter Creature's Name"
                       name="name"
+                      id="name"
                       class="form-control js-name-input"
                       required
                     />
@@ -50,6 +51,7 @@
                     <label for="type">Type:</label>
                     <select
                       name="type"
+                      id="type"
                       required
                       class="form-control js-input-type"
                     >
@@ -62,21 +64,23 @@
                   </div>
 
                   <div class="form-group col-12">
-                    <label>Price:</label>
+                    <label for="price">Price:</label>
                     <input
                       type="number"
                       placeholder="How much is the creature?"
-                      name="name"
+                      name="price"
+                      id="price"
                       class="form-control js-input-price"
                       required
                     />
                   </div>
 
                   <div class="form-group col-12">
-                    <label>Any Additional Notes:</label>
+                    <label for="notes">Any Additional Notes:</label>
                     <textarea
                       type="text"
-                      name="name"
+                      name="notes"
+                      id="notes"
                       class="form-control js-input-notes"
                     >
                     </textarea>
@@ -204,33 +208,36 @@
                   <form>
                     <div class="form-row">
                       <div class="form-group col-6">
-                        <label for="name">First Name:</label>
+                        <label for="fname">First Name:</label>
                         <input
                           type="text"
                           placeholder="Enter Creature's Name"
-                          name="name"
+                          name="fname"
+                          id="fname"
                           required
                           class="form-control js-input-customer-fname"
                         />
                       </div>
 
                       <div class="form-group col-6">
-                        <label for="name">Last Name:</label>
+                        <label for="lname">Last Name:</label>
                         <input
                           type="text"
                           placeholder="Enter Creature's Name"
-                          name="name"
+                          name="lname"
+                          id="lname"
                           required
                           class="form-control js-input-customer-lname"
                         />
                       </div>
 
                       <div class="form-group col-12">
-                        <label for="name">Phone:</label>
+                        <label for="phone">Phone:</label>
                         <input
                           type="text"
                           placeholder="861-867-5309"
-                          name="name"
+                          name="phone"
+                          id="phone"
                           required
                           class="form-control js-input-customer-phone-number"
                         />
@@ -253,6 +260,15 @@
           <div class="row">
             <div class="col-12">
               <!-- Display all Transactions -->
+              <div class="inline">
+                <h3 class="mb-3">Display All Transactions</h3>
+                <button class="btn btn-primary js-btn-display">Display</button>
+              </div>
+              <div class="card mb-4">
+                <ul class="list-group list-group-flush js-transactions-list">
+                  <li class="list-group-item">Individual Transaction</li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
