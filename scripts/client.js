@@ -188,17 +188,22 @@ function checkoutPurchase(event) {
 
 function displayAllTransactions() {
   console.log("DISPLAY ALL TRANSACTIONS");
-  // add transactions to table
+  // empty table before add transactions
   $(".js-purchase-table").empty();
+  // add transactions to table
   for (let transaction of customerPurchases) {
-    $(".js-purchase-table").append(`
+    for (let pet of transaction.petsPurchased) {
+      $(".js-purchase-table").append(`
     <tr>
-      <td>Pet Name</td>
-      <td>$0,00</td>
-      <td>Pet Type</td>
+      <td>${pet.name}</td>
+      <td>${pet.price.toLocaleString(undefined, {
+        minimumFractionDigits: 2
+      })}</td>
+      <td>${pet.type}</td>
       <td>${transaction.firstName} ${transaction.lastName}</td>
       <td>${transaction.phone}</td>
     </tr>
     `);
+    }
   }
 }
