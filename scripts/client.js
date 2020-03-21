@@ -54,15 +54,13 @@ function init() {
   $(".js-pet-card-container").on("click", ".js-btn-purchase", selectCreature);
   // create event listen for checkout button
   $(".js-btn-checkout").on("click", checkoutPurchase);
-  // create event listener for display all transactions
-  $(".js-btn-display").on("click", displayAllTransactions);
 }
 
 function render() {
   // render the page inventory to page on initial page load
   $(".js-pet-card-container").empty();
   for (let i = 0; i < inventory.length; i++) {
-    // format the price
+    // format the price to 0,000.00
     let petPrice = inventory[i].price.toLocaleString(undefined, {
       minimumFractionDigits: 2
     });
@@ -83,6 +81,32 @@ function render() {
       </div>
   `);
   }
+  //display selected pets
+  // empty the checkout ul
+  $(".js-select-list").empty();
+  // create variable total price
+  let totalPrice = 0;
+  // render the selected pets on page
+  for (let pet of creaturesToCheckout) {
+    // total price equals to the sum of all individual pets selected
+    totalPrice += pet.price;
+    // format the price 0,000.00
+    let petPrice = pet.price.toLocaleString(undefined, {
+      minimumFractionDigits: 2
+    });
+    // display selected pets on page
+    $(".js-select-list").append(`
+    <li class="list-group-item">${pet.name} - $${petPrice}</li>
+    `);
+  }
+  // format total price
+  totalPrice = totalPrice.toLocaleString(undefined, {
+    minimumFractionDigits: 2
+  });
+  // display total price at the end
+  $(".js-select-list").append(`
+  <li class="list-group-item list-group-item-success">Total Price: $${totalPrice}</li>
+    `);
 }
 
 function addNewPet(event) {
@@ -110,39 +134,15 @@ function addNewPet(event) {
 function selectCreature() {
   console.log("SELECT CREATURE");
   // log the index
-  console.log($(this).data("index"));
   let petIndex = $(this).data("index");
-  // delete the selected pet from inventory AND add the deleted pet to new global array for checkout
-  creaturesToCheckout.push(...inventory.splice(petIndex, 1));
+  // delete the selected pet from inventory
+  let petSelected = inventory.splice(petIndex, 1);
+  // add the deleted pet to new global array for checkout
+  creaturesToCheckout.push(...petSelected);
   // log inventory to make sure the selected pet has been removed
   console.log("INVENTORY AFTER SELECT PET:", inventory);
   // log creaturesToCheckout to make sure the selected pet has been added
   console.log("SELECTED PETS:", creaturesToCheckout);
-  // empty the checkout ul
-  $(".js-select-list").empty();
-  // create variable total price
-  let totalPrice = 0;
-  // render the selected pets on page
-  for (let pet of creaturesToCheckout) {
-    // total price equals to the sum of all individual pets selected
-    totalPrice += pet.price;
-    // format the price
-    let petPrice = pet.price.toLocaleString(undefined, {
-      minimumFractionDigits: 2
-    });
-    // display selected pets on page
-    $(".js-select-list").append(`
-    <li class="list-group-item">${pet.name} - $${petPrice}</li>
-    `);
-  }
-  // format total price
-  totalPrice = totalPrice.toLocaleString(undefined, {
-    minimumFractionDigits: 2
-  });
-  // display total price at the end
-  $(".js-select-list").append(`
-  <li class="list-group-item list-group-item-success">Total Price: $${totalPrice}</li>
-    `);
   // render the inventory to reflect changes
   render();
 }
@@ -151,7 +151,7 @@ function checkoutPurchase(event) {
   // prevent the default reload the page
   event.preventDefault();
   console.log("CHECKOUT");
-  // create object to store customer purchase information
+  // require inputs since the default required prop not working
   if (
     !$(".js-input-customer-fname").val() ||
     !$(".js-input-customer-lname").val() ||
@@ -160,6 +160,7 @@ function checkoutPurchase(event) {
     alert("Please make sure to fill out all the fields!");
     return;
   } else {
+    // create object to store customer purchase information
     const individualCustomerPurchase = {
       firstName: $(".js-input-customer-fname").val(),
       lastName: $(".js-input-customer-lname").val(),
@@ -180,16 +181,24 @@ function checkoutPurchase(event) {
     $(".js-input-customer-fname").val("");
     $(".js-input-customer-lname").val("");
     $(".js-input-customer-phone-number").val("");
+    // call display purchases function
+    displayAllTransactions();
   }
 }
 
 function displayAllTransactions() {
   console.log("DISPLAY ALL TRANSACTIONS");
-  // add transactions to list
-  $(".js-transactions-list").empty();
+  // add transactions to table
+  $(".js-purchase-table").empty();
   for (let transaction of customerPurchases) {
-    $(".js-transactions-list").append(`
-    <li class="list-group-item">${transaction.firstName} ${transaction.lastName} ${transaction.petsPurchased}
-    </li>`);
+    $(".js-purchase-table").append(`
+    <tr>
+      <td>Pet Name</td>
+      <td>$0,00</td>
+      <td>Pet Type</td>
+      <td>${transaction.firstName} ${transaction.lastName}</td>
+      <td>${transaction.phone}</td>
+    </tr>
+    `);
   }
 }

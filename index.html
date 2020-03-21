@@ -260,15 +260,19 @@
           <div class="row">
             <div class="col-12">
               <!-- Display all Transactions -->
-              <div class="inline">
-                <h3 class="mb-3">Display All Transactions</h3>
-                <button class="btn btn-primary js-btn-display">Display</button>
-              </div>
-              <div class="card mb-4">
-                <ul class="list-group list-group-flush js-transactions-list">
-                  <li class="list-group-item">Individual Transaction</li>
-                </ul>
-              </div>
+              <h3 class="mb-3">All Purchases</h3>
+              <table class="table table-striped table-bordered">
+                <thead class="thead-dark">
+                  <tr>
+                    <th>Pet Name</th>
+                    <th>Pet Price</th>
+                    <th>Pet Type</th>
+                    <th>Customer Full Name</th>
+                    <th>Customer Phone Number</th>
+                  </tr>
+                </thead>
+                <tbody class="js-purchase-table"></tbody>
+              </table>
             </div>
           </div>
         </div>
